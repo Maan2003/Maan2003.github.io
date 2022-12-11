@@ -1,5 +1,5 @@
 html {
-  font-family: "IBM Plex Mono";
+  font-family: "Martian Mono";
   background: #151515;
   color: #ddd;
   max-width: 800px;
@@ -16,6 +16,6 @@ a {
 
 }
 h1,h2,h3 {
-  font-family: Fragment Mono;
+  font-family: "Iceberg";
   color: white;
 }
