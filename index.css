@@ -1,0 +1,21 @@
+html {
+  font-family: "IBM Plex Mono";
+  background: #151515;
+  color: #ddd;
+  max-width: 800px;
+  margin: auto;
+  padding: 0.5em;
+}
+p {
+  text-align: justify;
+  hyphens: auto;
+}
+a {
+  color: #cfdff7;
+  text-decoration: underline dashed;
+
+}
+h1,h2,h3 {
+  font-family: Fragment Mono;
+  color: white;
+}

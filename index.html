@@ -1,0 +1,99 @@
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=IBM+Plex+Mono">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="index.css" rel="stylesheet" /will>
+  </head>
+  <body>
+    <h1>Summer of Bitcoin Journey</h1>
+    <h2 id="the-project">The Project</h2>
+    <p>
+      I was accepted for “<strong
+        >Graphical Wallet for
+        <a href="https://github.com/fedimint/fedimint">Fedimint</a> using
+        WASM”.</strong
+      >
+    </p>
+    <p>
+      Fedimint is an experimental implementation of federated e-cash written in
+      Rust. Currently, there is only a CLI client. A GUI client will be crucial
+      for widespread adoption, allowing non-technical people to use MiniMint.
+      Packaging the client as Web Assembly will help make more native clients
+      such as an Android app.
+    </p>
+    <h2 id="compile-to-web-assembly">
+      <a href="https://github.com/fedimint/minimint/pull/140/commits"
+        >Compile to Web Assembly</a
+      >
+    </h2>
+    <p>
+      Compiling Rust to Web Assembly is very simple. We just need to avoid
+      crates that don’t work on Web Assembly. We had to remove and update some
+      crates.
+    </p>
+    <h3 id="async-runtimes">async runtimes</h3>
+    <p>
+      Minimint uses <a href="https://tokio.rs/">tokio</a> runtime, which is not
+      compatible with Web Assembly.
+    </p>
+    <p>
+      Luckily, we have
+      <a
+        href="https://rustwasm.github.io/wasm-bindgen/reference/js-promises-and-rust-futures.html"
+        >wasm-bindgen-futures</a
+      >
+      that allows to interop between Rust Futures and JavaScript Promises. We
+      just had to add some
+      <a
+        href="https://github.com/fedimint/minimint/commit/fb2b140c6540e70d6081acd9693cfcd16d3d75a3"
+        >helper functions</a
+      >
+      to replace the tokio usage.
+    </p>
+    <h3 id="disentangling-mint-client-from-minimint-server">
+      Disentangling mint-client from minimint server
+    </h3>
+    <p>
+      Mint client depended on the server for various type definitions and
+      modules. I fixed this by
+      <a
+        href="https://github.com/fedimint/minimint/commit/6c8edb1200297ac11a207aad553d03fa9e0ced94https://github.com/fedimint/minimint/commit/6c8edb1200297ac11a207aad553d03fa9e0ced94"
+        >separating out a minimint-core</a
+      >
+      that both server and client can depend on.
+    </p>
+    <h2 id="web-sockets">
+      <a href="https://github.com/fedimint/minimint/pull/203/commits"
+        >Web Sockets</a
+      >
+    </h2>
+    <p>
+      Minimint server uses http for its API. Each module can expose api
+      endpoints. Due to http, we had to use polling to fetch transaction. With
+      web sockets, we will use jsonrpc for fully async request and responses.
+    </p>
+    <h2 id="graphical-client">Graphical Client</h2>
+    <p>
+      <a href="https://github.com/futurepaul">futurepaul</a> and
+      <a href="https://github.com/justinmoon">justinmoon</a> have already been
+      working on a
+      <a href="https://github.com/futurepaul/fluttermint"
+        >flutter based client</a
+      >. I am working on getting it to
+      <a href="https://github.com/Maan2003/fluttermint/tree/wasm"
+        >run inside a web browser</a
+      >. It is so awesome seeing fluttermint run inside Firefox.
+    </p>
+    <p>
+      A bunch of changes later and bug squashes later, paying and recieve
+      lightning payments works!
+    </p>
+    <h2 id="thanks">Thanks</h2>
+    <p>
+      I would like to thank my mentor
+      <a href="https://github.com/elsirion">elsirion</a> and all the reviewers
+      for helping me throughout this and for quick responses and reviews.
+    </p>
+  </body>
+</html>
