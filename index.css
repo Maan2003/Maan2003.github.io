@@ -23,14 +23,22 @@ h1,h2,h3 {
   color: white;
 }
 header {
-  text-align: center;
   margin-bottom: 1em;
 }
-
 .logo:focus, .logo:hover {
   filter: unset;
 }
-
 .logo {
   filter: grayscale(50%);
+}
+header {
+  display: flex;
+  gap: 1.5em;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  gap: 1em;
 }
