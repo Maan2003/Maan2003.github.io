@@ -1,3 +1,9 @@
+:root {
+  --color-text: #ccc;
+  --color-text: white;
+  --color-bg: #151515;
+  --color-link: #eda1b6;
+}
 html {
   font-family: "Martian Mono";
   background: #151515;
@@ -41,4 +47,10 @@ nav {
   align-items: center;
   align-content: center;
   gap: 1em;
+}
+nav a.active:hover, nav a.active:focus {
+
+}
+nav a.active {
+  color: white;
 }
